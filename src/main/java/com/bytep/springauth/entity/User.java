@@ -1,7 +1,7 @@
 package com.bytep.springauth.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,13 +12,23 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Table(name = "users")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private UUID id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
+    @Nullable
+    @Column(name = "creationDate")
     private Date creationDate;
+    @Nullable
+    @Column(name = "updateDate")
     private Date updateDate;
 
     public User(UUID id, String name, String email, String password, Date creationDate, Date updateDate) {
